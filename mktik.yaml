@@ -1,0 +1,14 @@
+- name: Configure MikroTik Router
+  hosts: routers
+  gather_facts: no
+
+  tasks:
+    - name: Set IP address
+      community.routeros.command:
+        commands:
+          - /ip address add address=10.0.0.1/24 interface=ether1
+
+    - name: Configure DHCP server
+      community.routeros.command:
+        commands:
+          - /ip dhcp-server add name=dhcp1 interface=bridge1
